@@ -60,10 +60,15 @@ public class CidadeResource {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Void> update(@PathVariable Integer id,
+	public ResponseEntity<Cidade> update(@PathVariable Integer id,
 			    @RequestBody Cidade cidade) {
-		cidade = cidadeService.update(cidade);
-		return ResponseEntity.ok().build();
+		try {
+		Cidade cidadeSalva= cidadeService.update(id,cidade);
+		return ResponseEntity.ok(cidadeSalva);
+		}
+		catch (IllegalArgumentException e){
+	          return ResponseEntity.notFound().build();    
+	       } 
 		
 	}
 

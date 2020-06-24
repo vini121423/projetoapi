@@ -3,6 +3,7 @@ package br.com.etec.projetota.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -37,9 +38,10 @@ public class CidadeService {
 		return cidadeRepository.save(cidade);
 	}
 	
-	public Cidade update(Cidade cidade) {
-		find(cidade.getId());
-		return cidadeRepository.save(cidade);
+	public Cidade update(int id,Cidade cidade) {
+		 Cidade cidadeSalva = find(id);
+		 BeanUtils.copyProperties(cidade,cidadeSalva,"id");
+		 return cidadeRepository.save(cidadeSalva);
 	}
 	
 	public void delete(Integer id) {
