@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="cliente")
@@ -14,14 +16,18 @@ public class Cliente {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
 	private Integer id;
 	
+	@Size(max = 200)
 	private String nome;
 	
+	@Size(max = 20)
 	private String telefone;
 	
 	@ManyToOne
 	@JoinColumn(name="cidade_id")
+	
 	private Cidade cidade;
 
 	public Integer getId() {
