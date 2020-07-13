@@ -23,7 +23,7 @@ public class ClienteService {
 	}
 	
 	public Page<Cliente> pesquisar(String nome, Pageable pageable) {
-		return clienteRepository.findByNomeContaining(nome, pageable);
+		return clienteRepository.findByNomeContainingOrderByNome(nome, pageable);
 	}
 	
 	public Cliente findCliente(Integer id) {

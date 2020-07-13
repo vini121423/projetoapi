@@ -9,5 +9,5 @@ import br.com.etec.projetota.model.Cliente;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Integer>{
-	public Page<Cliente> findByNomeContaining(String nome, Pageable pageable);
+	public Page<Cliente> findByNomeContainingOrderByNome(String nome, Pageable pageable);
 }
