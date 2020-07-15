@@ -5,14 +5,26 @@ Create Table Cidade(
    primary key(id));
    
 Create Table Cliente(
-id int not null auto_increment,
-nome varchar(200),
-telefone varchar(20),
-cidade_id int not null,
-primary key(id));
+   id int not null auto_increment,
+   nome varchar(200),
+   telefone varchar(20),
+   cidade_id int not null,
+   primary key(id));
+
+Create table Categoria(
+    id int not null auto_increment primary key,
+    nome varchar(100) not null) ENGINE = InnoDB DEFAULT CHARSET=UTF8;
+   
+Create table Produto(
+    id int not null auto_increment primary key,
+    nome varchar(100) not null,
+    preco numeric(12,2) not null,
+    idcategoria int not null) ENGINE = InnoDB DEFAULT CHARSET = UTF8;
+    
 
 alter table cliente add constraint fk_cliente_cidade foreign key(cidade_id) references cidade(id);   
-
+alter table Produto add constraint fk_produto_categoria foreign key(idcategoria) references Categoria(id);
+    
 
 insert into cidade(nome, estado) values ('Macatuba', 'SP');
 insert into cidade(nome, estado) values ('Bauru', 'SP');
@@ -97,3 +109,5 @@ insert into cliente(nome, telefone, cidade_id) values ('Augusto', '99574682',1);
 insert into cliente(nome, telefone, cidade_id) values ('Daniel', '9934457',5);
 insert into cliente(nome, telefone, cidade_id) values ('Damião', '9934657',3);
 insert into cliente(nome, telefone, cidade_id) values ('Natália', '99436500',4);
+insert into Categoria(nome) values  ('Alimentícios'),('Lazer'),('Bem Estar'),('Eletrônicos');
+insert into produto(nome,preco,idcategoria) values ('Pão de forma',3.40,1),('Raquete de tênis',25.90,2),('Vitamina',80.90,3),('Playstation 4 Pro',350.00,4);
