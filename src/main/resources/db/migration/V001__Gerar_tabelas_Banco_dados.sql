@@ -22,9 +22,16 @@ Create table Produto(
     idcategoria int not null) ENGINE = InnoDB DEFAULT CHARSET = UTF8;
     
 
-alter table cliente add constraint fk_cliente_cidade foreign key(cidade_id) references cidade(id);   
+Create table Pedido(
+  id bigint auto_increment primary key,
+  dataPedido date,
+  idcliente int not null,
+  valorPedido numeric(12,2)) ENGINE = InnoDB DEFAULT CHARSET = UTF8;
+
+
+alter table Cliente add constraint fk_cliente_cidade foreign key(cidade_id) references Cidade(id);   
 alter table Produto add constraint fk_produto_categoria foreign key(idcategoria) references Categoria(id);
-    
+alter table Pedido add constraint fk_pedido_cliente foreign key(idcliente) references Cliente(id);
 
 insert into cidade(nome, estado) values ('Macatuba', 'SP');
 insert into cidade(nome, estado) values ('Bauru', 'SP');
@@ -109,5 +116,8 @@ insert into cliente(nome, telefone, cidade_id) values ('Augusto', '99574682',1);
 insert into cliente(nome, telefone, cidade_id) values ('Daniel', '9934457',5);
 insert into cliente(nome, telefone, cidade_id) values ('Damião', '9934657',3);
 insert into cliente(nome, telefone, cidade_id) values ('Natália', '99436500',4);
+
 insert into Categoria(nome) values  ('Alimentícios'),('Lazer'),('Bem Estar'),('Eletrônicos');
-insert into produto(nome,preco,idcategoria) values ('Pão de forma',3.40,1),('Raquete de tênis',25.90,2),('Vitamina',80.90,3),('Playstation 4 Pro',350.00,4);
+insert into produto(nome,preco,idcategoria) values ('Pão de forma',3.40,1),
+                   ('Raquete de tênis',25.90,2),('Vitamina',80.90,3),
+                   ('Playstation 4 Pro',350.00,4);               
