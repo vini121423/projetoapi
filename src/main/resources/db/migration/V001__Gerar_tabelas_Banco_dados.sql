@@ -120,4 +120,8 @@ insert into cliente(nome, telefone, cidade_id) values ('Natália', '99436500',4)
 insert into Categoria(nome) values  ('Alimentícios'),('Lazer'),('Bem Estar'),('Eletrônicos');
 insert into produto(nome,preco,idcategoria) values ('Pão de forma',3.40,1),
                    ('Raquete de tênis',25.90,2),('Vitamina',80.90,3),
-                   ('Playstation 4 Pro',350.00,4);               
+                   ('Playstation 4 Pro',350.00,4);   
+                   
+insert into Pedido(dataPedido,idcliente,valorPedido) values ('2020/08/17',2,'3.20');
+insert into Pedido(dataPedido,idcliente,valorPedido) values ('2020/08/03',4,'7.50');    
+insert into Pedido(dataPedido,idcliente,valorPedido) values ('2020/08/17',8,'31.00');                          

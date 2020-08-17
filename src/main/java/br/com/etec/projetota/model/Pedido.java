@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+
 
 @Entity
 @Table(name="pedido")
@@ -19,10 +19,10 @@ public class Pedido {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private LocalDate dataPedido;
-	private BigDecimal preco;
+	private BigDecimal valorPedido;
 	
 	
-	@NotNull
+	
 	@ManyToOne
 	@JoinColumn(name="idcliente")
 	private Cliente cliente;
@@ -50,13 +50,14 @@ public class Pedido {
 	}
 
 
-	public BigDecimal getPreco() {
-		return preco;
+
+	public BigDecimal getValorPedido() {
+		return valorPedido;
 	}
 
 
-	public void setPreco(BigDecimal preco) {
-		this.preco = preco;
+	public void setValorPedido(BigDecimal valorPedido) {
+		this.valorPedido = valorPedido;
 	}
 
 
