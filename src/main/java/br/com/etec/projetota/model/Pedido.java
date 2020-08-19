@@ -18,8 +18,8 @@ public class Pedido {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	private LocalDate dataPedido;
-	private BigDecimal valorPedido;
+	private LocalDate datapedido;
+	private BigDecimal valorpedido;
 	
 	
 	
@@ -28,11 +28,11 @@ public class Pedido {
 	private Cliente cliente;
 
 
-	
 
 	public Long getId() {
 		return id;
 	}
+
 
 
 	public void setId(Long id) {
@@ -40,25 +40,29 @@ public class Pedido {
 	}
 
 
-	public LocalDate getDataPedido() {
-		return dataPedido;
-	}
 
-
-	public void setDataPedido(LocalDate dataPedido) {
-		this.dataPedido = dataPedido;
+	public LocalDate getDatapedido() {
+		return datapedido;
 	}
 
 
 
-	public BigDecimal getValorPedido() {
-		return valorPedido;
+	public void setDatapedido(LocalDate datapedido) {
+		this.datapedido = datapedido;
 	}
 
 
-	public void setValorPedido(BigDecimal valorPedido) {
-		this.valorPedido = valorPedido;
+
+	public BigDecimal getValorpedido() {
+		return valorpedido;
 	}
+
+
+
+	public void setValorpedido(BigDecimal valorpedido) {
+		this.valorpedido = valorpedido;
+	}
+
 
 
 	public Cliente getCliente() {
@@ -66,9 +70,11 @@ public class Pedido {
 	}
 
 
+
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+
 
 
 	@Override
@@ -78,6 +84,7 @@ public class Pedido {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+
 
 
 	@Override
@@ -97,10 +104,8 @@ public class Pedido {
 		return true;
 	}
 
+    
+	
 
 	
-	
-	
-    
- 
 }
