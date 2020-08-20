@@ -30,7 +30,7 @@ public class PedidoService {
 				"Pedido não encontrado ID:" + id + " Tipo: " + Pedido.class.getName()));
 	}
 
-	public Page<Pedido> filtrar(PedidoFilter pedidoFilter, Pageable pageable) {
+	public Page<Pedido> pesquisar(PedidoFilter pedidoFilter, Pageable pageable) {
 		return pedidoRepository.filtrar(pedidoFilter, pageable);
 	}
 

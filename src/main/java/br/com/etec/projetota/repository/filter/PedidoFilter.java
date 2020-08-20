@@ -7,9 +7,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class PedidoFilter {
 	private String nome;
 
-	@DateTimeFormat(pattern = "yyyy/mm/dd")
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private LocalDate dataPedidoDe;
-	@DateTimeFormat(pattern = "yyyy/mm/dd")
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private LocalDate dataPedidoAte;
 
 	public String getNome() {

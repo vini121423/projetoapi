@@ -59,11 +59,11 @@ public class PedidoRepositoryImpl implements PedidoRepositoryQuery {
 		}
 
 		if (pedidoFilter.getDataPedidoDe() != null) {
-			predicates.add(builder.greaterThanOrEqualTo(root.get("dataPedido"), pedidoFilter.getDataPedidoDe()));
+			predicates.add(builder.greaterThanOrEqualTo(root.get("datapedido"), pedidoFilter.getDataPedidoDe()));
 		}
 
 		if (pedidoFilter.getDataPedidoAte() != null) {
-			predicates.add(builder.lessThanOrEqualTo(root.get("dataPedido"), pedidoFilter.getDataPedidoAte()));
+			predicates.add(builder.lessThanOrEqualTo(root.get("datapedido"), pedidoFilter.getDataPedidoAte()));
 		}
 
 		return predicates.toArray(new Predicate[predicates.size()]);

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -32,11 +31,10 @@ public class PedidoResource {
 	public List<Pedido> listarTodosPedidos() {
 		return pedidoService.listarPedidos();
 	}
-	
+
 	@GetMapping()
-	public Page<Pedido> pesquisar(@RequestParam(required = false, 
-			defaultValue = "") PedidoFilter pedidoFilter, Pageable pageable) {
-		return pedidoService.filtrar(pedidoFilter, pageable);
+	public Page<Pedido> pesquisar(PedidoFilter pedidoFilter, Pageable pageable) {
+		return pedidoService.pesquisar(pedidoFilter, pageable);
 	}
 
 	@GetMapping("/{id}")
@@ -68,4 +66,9 @@ public class PedidoResource {
 		}
 
 	}
+	
+	/*
+     --NO POSTMAN--
+     localhost:8080/pedidos?dataPedidoDe=2020/08/09&dataPedidoAte=2020/08/08&nome=Rahul
+   */
 }
