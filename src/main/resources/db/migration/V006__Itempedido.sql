@@ -10,4 +10,4 @@ alter table ItemPedido add constraint fk_itempedido_pedido foreign key(idpedido)
 alter table ItemPedido add constraint fk_itempedido_produto foreign key(codigoproduto) references Produto(id);
 
 
-insert into ItemPedido(idpedido,codigoproduto,qtdeitem,valorunitario,totalitem) values (1,3,12.00,92.00);      
+insert into ItemPedido(idpedido,codigoproduto,qtdeitem,valorunitario,totalitem) values (1,3,12.00,3.00,36.00);      

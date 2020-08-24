@@ -35,6 +35,7 @@ public class PedidoService {
 	}
 
 	public Pedido insert(Pedido pedido) {
+		pedido.getItens().forEach(p -> p.setPedido(pedido));
 		return pedidoRepository.save(pedido);
 	}
 

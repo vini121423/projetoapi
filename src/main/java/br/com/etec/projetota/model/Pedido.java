@@ -15,7 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Entity
@@ -34,7 +34,7 @@ public class Pedido {
 	private Cliente cliente;
 	
 	
-	@JsonIgnore()
+	@JsonIgnoreProperties("pedido")
 	@OneToMany(mappedBy="pedido", cascade = CascadeType.ALL)
 	private List<Itempedido> itens = new ArrayList<>();
 
