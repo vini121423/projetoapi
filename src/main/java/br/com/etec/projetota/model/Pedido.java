@@ -35,7 +35,7 @@ public class Pedido {
 	
 	
 	@JsonIgnoreProperties("pedido")
-	@OneToMany(mappedBy="pedido", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="pedido", cascade = CascadeType.ALL,orphanRemoval = true)
 	private List<Itempedido> itens = new ArrayList<>();
 
 

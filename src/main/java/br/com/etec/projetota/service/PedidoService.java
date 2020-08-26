@@ -41,7 +41,12 @@ public class PedidoService {
 
 	public Pedido update(Pedido pedido, Long id) {
 		Pedido pedidoSalvo = find(id);
-		BeanUtils.copyProperties(pedido, pedidoSalvo, "id");
+		
+		pedidoSalvo.getItens().clear();
+		pedidoSalvo.getItens().addAll(pedido.getItens());
+		
+		pedidoSalvo.getItens().forEach(p -> p.setPedido(pedidoSalvo));
+		BeanUtils.copyProperties(pedido, pedidoSalvo, "id", "itens");
 		return pedidoRepository.save(pedidoSalvo);
 	}
 
