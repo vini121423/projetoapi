@@ -22,6 +22,10 @@ public class ClienteService {
 		return clienteRepository.findAll();
 	}
 	
+	public List<Cliente> localizarClientesPorNome(String nome) {
+		return clienteRepository.porNome(nome);
+	}
+	
 	public Page<Cliente> pesquisar(String nome, Pageable pageable) {
 		return clienteRepository.findByNomeContainingOrderByNome(nome, pageable);
 	}

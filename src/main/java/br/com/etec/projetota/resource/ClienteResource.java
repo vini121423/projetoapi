@@ -24,54 +24,57 @@ import br.com.etec.projetota.service.ClienteService;
 @RestController
 @RequestMapping("/clientes")
 public class ClienteResource {
-	
+
 	@Autowired
 	private ClienteService clienteService;
-	
+
 	@GetMapping("/todos")
 	public List<Cliente> listarTodosClientes() {
 		return clienteService.listarClientes();
 	}
-	
+
 	@GetMapping()
-	public Page<Cliente> pesquisar(@RequestParam(required = false, 
-			defaultValue = "") String nome, Pageable pageable) {
+	public Page<Cliente> pesquisar(@RequestParam(required = false, defaultValue = "") String nome, Pageable pageable) {
 		return clienteService.pesquisar(nome, pageable);
 	}
-	
+
 	@GetMapping("/{id}")
-	 public ResponseEntity<Cliente> find(@PathVariable Integer id){
-	   Cliente cliente = clienteService.findCliente(id);
-	   return ResponseEntity.ok().body(cliente);
+	public ResponseEntity<Cliente> find(@PathVariable Integer id) {
+		Cliente cliente = clienteService.findCliente(id);
+		return ResponseEntity.ok().body(cliente);
 	}
-	
+
+	@GetMapping("/cli/{nome}")
+	public List<Cliente> porNome(@PathVariable String nome) {
+		return clienteService.localizarClientesPorNome(nome);
+	}
+
 	@PostMapping()
-	 public ResponseEntity<Void> insert(@RequestBody Cliente cliente){
+	public ResponseEntity<Void> insert(@RequestBody Cliente cliente) {
 		cliente = clienteService.insert(cliente);
-		
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-				.path("/{id}").buildAndExpand(cliente.getId()).toUri();
-		
+
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(cliente.getId())
+				.toUri();
+
 		return ResponseEntity.created(uri).build();
 	}
-	
+
 	@DeleteMapping("/{id}")
-	 public ResponseEntity<Void> delete(@PathVariable Integer id){
+	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		clienteService.delete(id);
 		return ResponseEntity.noContent().build();
-		
+
 	}
-	
+
 	@PutMapping("/{id}")
-	 public ResponseEntity<Cliente> update(@PathVariable Integer id, @RequestBody Cliente cliente){
-		 try{
-	         Cliente clienteSalvo = clienteService.update(id,cliente);
-	           return ResponseEntity.ok(clienteSalvo);
-	       }
-	       catch (IllegalArgumentException e){
-	          return ResponseEntity.notFound().build();    
-	       } 
-	 
+	public ResponseEntity<Cliente> update(@PathVariable Integer id, @RequestBody Cliente cliente) {
+		try {
+			Cliente clienteSalvo = clienteService.update(id, cliente);
+			return ResponseEntity.ok(clienteSalvo);
+		} catch (IllegalArgumentException e) {
+			return ResponseEntity.notFound().build();
+		}
+
 	}
 
 }
