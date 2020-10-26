@@ -47,6 +47,12 @@ public class ProdutoResource {
 		  return ResponseEntity.ok().body(produto);
 	  }
 	  
+	  @GetMapping("/produto/{nome}")
+	  public List<Produto> filtrarProdutos(@PathVariable String nome){
+		  return produtoService.filtrarProdutos(nome);
+	  }
+	  
+	  
 	  
 	  @PostMapping()
 	  public ResponseEntity<Void> insert(@RequestBody Produto produto){

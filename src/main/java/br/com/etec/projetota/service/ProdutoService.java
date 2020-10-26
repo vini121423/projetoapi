@@ -22,6 +22,10 @@ public class ProdutoService {
 		  return produtoRepository.findAll();
 	  }
 	  
+	  public List<Produto> filtrarProdutos(String nome){
+		  return produtoRepository.buscarPorNome(nome);
+	  }
+	  
 	  public Produto findProduto(Integer id) {
 		  Optional<Produto> produto = produtoRepository.findById(id);
 		  return produto.orElseThrow(()-> new ObjectNotFoundException("Produto não encontrado  ID:" + id + "Tipo: " + Produto.class.getName()));
