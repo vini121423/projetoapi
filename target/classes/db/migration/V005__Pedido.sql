@@ -1,7 +1,7 @@
 Create table Pedido(
   id bigint auto_increment primary key,
   dataPedido date,
-  idcliente int not null,
+  idcliente int,
   valorPedido numeric(12,2)) ENGINE = InnoDB DEFAULT CHARSET = UTF8;
  
    
