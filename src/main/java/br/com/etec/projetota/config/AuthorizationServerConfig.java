@@ -15,23 +15,21 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
-	
+
 	@Autowired
 	private AuthenticationManager authManager;
-	
-	
 
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clientDSC) throws Exception {
 		clientDSC.inMemory().withClient("etec").secret("@Etec244").scopes("read", "write")
-				.authorizedGrantTypes("password").accessTokenValiditySeconds(1800);
+				.authorizedGrantTypes("password", "refresh_token").accessTokenValiditySeconds(1800)
+				.refreshTokenValiditySeconds(3600 * 24);
 	}
-	
+
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endPoints) throws Exception {
-	  endPoints.tokenStore(tokenStore())
-	  .accessTokenConverter(accessTokenConverter())
-	  .authenticationManager(authManager);
+		endPoints.tokenStore(tokenStore()).accessTokenConverter(accessTokenConverter()).reuseRefreshTokens(false)
+				.authenticationManager(authManager);
 	}
 
 	@Bean
@@ -45,17 +43,12 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	public TokenStore tokenStore() {
 		return new JwtTokenStore(accessTokenConverter());
 	}
-	
+
 	/*
-	 *  localhost:8080/oauth/token  ADICIONAR CLIENTE E PASSWORD NO  
-	 *  BODY(xwww.form...)
-	 *  client - etec
-	 *  username - admin
-	 *  password - admin
-	 *  grant_type - password
-	 *  
-	 *  copiar o token
-	 *  */
-	 
+	 * localhost:8080/oauth/token ADICIONAR CLIENTE E PASSWORD NO BODY(xwwwform...)
+	 * client - etec username - admin password - admin grant_type - password
+	 * 
+	 * copiar o token
+	 */
 
 }
